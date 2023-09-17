@@ -21,5 +21,8 @@
                 "infile": "CHANGELOG.md"
             }
         }
-    }
+    },
+    "workspaces": [
+        "server"
+    ]
 }
