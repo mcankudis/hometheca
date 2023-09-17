@@ -1,23 +1,25 @@
 {
-  "name": "hometheca",
-  "version": "0.0.1",
-  "repository": "git@github.com:mcankudis/hometheca.git",
-  "author": "Miko Cankudis <mikolaj@cankudis.net>",
-  "license": "GPL-3.0-or-later",
-  "private": true,
-  "scripts": {
-    "release": "release-it"
-  },
-  "devDependencies": {
-    "@release-it/conventional-changelog": "^7.0.1",
-    "release-it": "^16.1.5"
-  },
-  "release-it": {
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "conventionalcommits",
-        "infile": "CHANGELOG.md"
-      }
+    "name": "hometheca",
+    "version": "0.0.1",
+    "repository": "git@github.com:mcankudis/hometheca.git",
+    "author": "Miko Cankudis <mikolaj@cankudis.net>",
+    "license": "GPL-3.0-or-later",
+    "private": true,
+    "scripts": {
+        "release": "release-it",
+        "prepare": "husky install"
+    },
+    "devDependencies": {
+        "@release-it/conventional-changelog": "^7.0.1",
+        "husky": "^8.0.3",
+        "release-it": "^16.1.5"
+    },
+    "release-it": {
+        "plugins": {
+            "@release-it/conventional-changelog": {
+                "preset": "conventionalcommits",
+                "infile": "CHANGELOG.md"
+            }
+        }
     }
-  }
 }
