@@ -4,6 +4,7 @@
   "repository": "git@github.com:mcankudis/hometheca.git",
   "author": "Miko Cankudis <mikolaj@cankudis.net>",
   "license": "GPL-3.0-or-later",
+  "private": true,
   "scripts": {
     "release": "release-it"
   },
