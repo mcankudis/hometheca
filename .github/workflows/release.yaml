@@ -1,0 +1,31 @@
+name: Create Release
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  bump_version:
+    name: Bump Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Set git config
+        run: |
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
+
+      - name: Run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn release -- --ci --verbose
