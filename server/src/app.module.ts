@@ -1,12 +1,16 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { EnvVars, validate } from './config/env.validation';
-import { FlowIdMiddleware } from './logging/flow-id.middleware';
-import { LoggerModule } from './logging/logger.module';
-import { RequestLoggerMiddleware } from './logging/request-logger.middleware';
+
+import { EnvVars, validate } from '@config';
+import {
+    FlowIdMiddleware,
+    LoggerModule,
+    RequestLoggerMiddleware
+} from '@logging';
+import { TrpcModule } from '@t';
+import { AppTrpcRouter } from './app.router';
+import { UserModule } from './user/User.module';
 
 @Module({
     imports: [
@@ -23,10 +27,12 @@ import { RequestLoggerMiddleware } from './logging/request-logger.middleware';
             },
             inject: [ConfigService]
         }),
-        LoggerModule
+        LoggerModule,
+        UserModule,
+        TrpcModule
     ],
-    controllers: [AppController],
-    providers: [AppService]
+    controllers: [],
+    providers: [AppTrpcRouter]
 })
 export class AppModule {
     configure(consumer: MiddlewareConsumer) {
