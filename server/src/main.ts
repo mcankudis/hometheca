@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
+import { Response } from 'express';
 import { renderTrpcPanel } from 'trpc-panel';
 
-import { Response } from 'express';
 import { AppModule } from './app.module';
 import { AppTrpcRouter } from './app.router';
 
