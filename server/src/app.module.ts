@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { AuthModule } from '@auth';
 import { EnvVars, validate } from '@config';
 import {
     FlowIdMiddleware,
@@ -9,15 +10,17 @@ import {
     RequestLoggerMiddleware
 } from '@logging';
 import { TrpcModule } from '@t';
+import { UserModule } from '@user';
 import { AppTrpcRouter } from './app.router';
-import { UserModule } from './user/User.module';
 
 @Module({
     imports: [
+        AuthModule,
         ConfigModule.forRoot({
             validate,
             isGlobal: true
         }),
+        LoggerModule,
         MongooseModule.forRootAsync({
             imports: [ConfigModule],
             useFactory: async (configService: ConfigService<EnvVars>) => {
@@ -27,9 +30,8 @@ import { UserModule } from './user/User.module';
             },
             inject: [ConfigService]
         }),
-        LoggerModule,
-        UserModule,
-        TrpcModule
+        TrpcModule,
+        UserModule
     ],
     controllers: [],
     providers: [AppTrpcRouter]

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { genSalt, hash } from 'bcrypt';
+import { compare, genSalt, hash } from 'bcrypt';
 import { Model } from 'mongoose';
 
 import { DatadogLogger } from '@logging';
@@ -8,6 +8,7 @@ import { User } from './User';
 import { CreateUserDTO } from './User.dto';
 import { UserDAO } from './User.schema';
 
+// todo add rate limiting
 @Injectable()
 export class UserService {
     constructor(
@@ -39,5 +40,31 @@ export class UserService {
 
         // todo send verification email
         return 'ok';
+    }
+
+    public async authenticateUser(username: string, password: string) {
+        this.Logger.log(`Authenticating user ${username}`);
+
+        const user = await this.userDAO.findOne({ username });
+
+        if (!user) {
+            // todo sleep for a bit to prevent timing attacks
+            throw new Error('Username or password incorrect');
+        }
+
+        const isPasswordCorrect = await compare(
+            password,
+            user.account.password
+        );
+
+        if (!isPasswordCorrect) {
+            throw new Error('Username or password incorrect');
+        }
+
+        return {
+            id: user._id.toString(),
+            username: user.username,
+            locale: user.locale
+        };
     }
 }

@@ -18,6 +18,7 @@
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "paths": {
+            "@auth": ["./src/auth"],
             "@config": ["./src/config"],
             "@logging": ["./src/logging"],
             "@t": ["./src/trpc"],
