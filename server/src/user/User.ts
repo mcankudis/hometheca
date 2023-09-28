@@ -3,6 +3,7 @@ import { Locale } from '@hometheca/shared';
 export interface Account {
     email: string;
     emailVerifiedAt?: Date;
+    emailVerificationToken?: string;
     password: string;
     lastLogin?: Date;
 }

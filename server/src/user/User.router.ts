@@ -5,7 +5,7 @@ import { Response } from 'express';
 import { AuthService } from '@auth';
 import { DatadogLogger } from '@logging';
 import { TrpcService } from '@t';
-import { CreateUserDTO, LoginUserDTO } from './User.dto';
+import { CreateUserDTO, LoginUserDTO, verifyEmailDTO } from './User.dto';
 import { UserService } from './User.service';
 
 @Injectable()
@@ -20,8 +20,19 @@ export class UserRouter {
     public readonly router = this.trpc.router({
         createUser: this.trpc.procedure
             .input(CreateUserDTO)
-            .mutation(({ input }) => {
-                return this.userService.createUser(input);
+            .mutation(async ({ input }) => {
+                await this.userService.createUser(input);
+
+                return { success: true };
+            }),
+        verifyEmail: this.trpc.procedure
+            .input(verifyEmailDTO)
+            .mutation(async ({ input }) => {
+                await this.userService.verifyEmail(
+                    input.emailVerificationToken
+                );
+
+                return { success: true };
             }),
         login: this.trpc.procedure
             .input(LoginUserDTO)

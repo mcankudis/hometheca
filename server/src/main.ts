@@ -15,17 +15,11 @@ const config = mode === 'production' ? {} : { cors: true };
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, config);
 
-    app.use(helmet());
     app.use(cookieParser());
 
-    const router = app.get(AppTrpcRouter);
-    app.use(
-        `/trpc`,
-        createExpressMiddleware({
-            router: router.appRouter,
-            createContext
-        })
-    );
+    if (mode === 'production') {
+        app.use(helmet());
+    }
 
     if (mode === 'development') {
         app.use('/panel', (_: unknown, res: Response) => {
@@ -35,7 +29,18 @@ async function bootstrap() {
                 })
             );
         });
+        app.use('/trpc', helmet());
     }
+
+    const router = app.get(AppTrpcRouter);
+    app.use(
+        '/trpc',
+        createExpressMiddleware({
+            router: router.appRouter,
+            createContext
+        })
+    );
+
     await app.listen(3000);
 }
 bootstrap();

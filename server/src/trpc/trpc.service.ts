@@ -19,15 +19,20 @@ export class TrpcService {
 
     public ensureAuthenticated = this.trpc.middleware(async ({ ctx, next }) => {
         try {
-            ctx.session = await this.authService.verifySession(
+            const session = await this.authService.verifySession(
                 ctx.req.cookies['session_token']
             );
+
+            return next({
+                ctx: {
+                    ...ctx,
+                    session
+                }
+            });
         } catch (error) {
             this.Logger.error('Error veryfing session', error);
             throw new TRPCError({ code: 'UNAUTHORIZED' });
         }
-
-        return next();
     });
 
     public readonly protectedProcedure = this.trpc.procedure.use(

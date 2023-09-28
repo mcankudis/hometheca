@@ -21,6 +21,7 @@
             "@auth": ["./src/auth"],
             "@config": ["./src/config"],
             "@logging": ["./src/logging"],
+            "@mail": ["./src/mail"],
             "@t": ["./src/trpc"],
             "@user": ["./src/user"]
         }

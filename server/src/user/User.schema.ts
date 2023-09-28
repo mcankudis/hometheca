@@ -8,10 +8,12 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema({ _id: false })
 class AccountDAO {
-    @Prop({ index: true, required: true })
+    @Prop({ index: true, required: true, unique: true })
     email: string;
     @Prop({ type: Date })
     emailVerifiedAt?: Date;
+    @Prop()
+    emailVerificationToken?: string;
     @Prop({ required: true })
     password: string;
     @Prop({ type: Date })

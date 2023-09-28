@@ -9,6 +9,7 @@ import {
     LoggerModule,
     RequestLoggerMiddleware
 } from '@logging';
+import { MailModule } from '@mail';
 import { TrpcModule } from '@t';
 import { UserModule } from '@user';
 import { AppTrpcRouter } from './app.router';
@@ -31,7 +32,8 @@ import { AppTrpcRouter } from './app.router';
             inject: [ConfigService]
         }),
         TrpcModule,
-        UserModule
+        UserModule,
+        MailModule
     ],
     controllers: [],
     providers: [AppTrpcRouter]
