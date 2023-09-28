@@ -1,5 +1,12 @@
 
 
+## [0.4.0](https://github.com/mcankudis/hometheca/compare/0.3.0...0.4.0) (2023-09-28)
+
+
+### Features
+
+* mail service; api for email verification ([1ab2dd7](https://github.com/mcankudis/hometheca/commit/1ab2dd7aa0c7d7691aa9a30efbdd1911f0daa573))
+
 ## [0.3.0](https://github.com/mcankudis/hometheca/compare/0.2.0...0.3.0) (2023-09-26)
 
 
