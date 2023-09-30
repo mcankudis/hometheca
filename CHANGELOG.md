@@ -1,5 +1,12 @@
 
 
+## [0.5.0](https://github.com/mcankudis/hometheca/compare/0.4.0...0.5.0) (2023-09-30)
+
+
+### Features
+
+* add component library; ([c5bcfe3](https://github.com/mcankudis/hometheca/commit/c5bcfe316bcbe9d95cbdfa38de616522a76d8b70))
+
 ## [0.4.0](https://github.com/mcankudis/hometheca/compare/0.3.0...0.4.0) (2023-09-28)
 
 
