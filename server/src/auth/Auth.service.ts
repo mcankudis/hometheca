@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { randomUUID } from 'crypto';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { Model } from 'mongoose';
 
 import { DatadogLogger } from '@logging';

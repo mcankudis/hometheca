@@ -3,6 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "description": "",
+    "main": "dist/index.js",
     "scripts": {
         "start": "vite",
         "dev": "vite",
@@ -11,6 +12,7 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@suid/vite-plugin": "^0.1.5",
         "autoprefixer": "^10.4.14",
         "postcss": "^8.4.24",
         "sass": "^1.67.0",
@@ -21,6 +23,10 @@
         "vite-plugin-solid": "^2.7.0"
     },
     "dependencies": {
+        "@solidjs/router": "^0.8.3",
+        "@suid/icons-material": "^0.6.11",
+        "@suid/material": "^0.15.1",
+        "@trpc/client": "^10.38.5",
         "solid-js": "^1.7.6"
     }
 }

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import { Response } from 'express';
 import helmet from 'helmet';
 import { renderTrpcPanel } from 'trpc-panel';
@@ -10,10 +10,14 @@ import { AppTrpcRouter } from './app.router';
 import { createContext } from './trpc/Context';
 
 const mode = process.env.NODE_ENV ?? 'development';
-const config = mode === 'production' ? {} : { cors: true };
+console.log(`Running in ${mode} mode`);
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, config);
+    const app = await NestFactory.create(AppModule);
+
+    if (mode !== 'production') {
+        app.enableCors();
+    }
 
     app.use(cookieParser());
 

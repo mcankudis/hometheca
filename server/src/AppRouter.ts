@@ -1,3 +1,3 @@
 import { AppTrpcRouter } from './app.router';
 
-export type AppRouter = AppTrpcRouter[`appRouter`];
+export type AppRouter = AppTrpcRouter['appRouter'];
