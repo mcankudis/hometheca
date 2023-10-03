@@ -1,5 +1,12 @@
 
 
+## [0.6.0](https://github.com/mcankudis/hometheca/compare/0.5.0...0.6.0) (2023-10-03)
+
+
+### Features
+
+* working monorepo setup ([8e173e2](https://github.com/mcankudis/hometheca/commit/8e173e219fb70e55e1a4f07dc830bfaea592feac))
+
 ## [0.5.0](https://github.com/mcankudis/hometheca/compare/0.4.0...0.5.0) (2023-09-30)
 
 
