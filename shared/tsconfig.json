@@ -1,6 +1,7 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "module": "ESNext",
+        "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "declaration": true,
         "removeComments": true,

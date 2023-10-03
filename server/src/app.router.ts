@@ -14,3 +14,5 @@ export class AppTrpcRouter {
         user: this.userRouter.router
     });
 }
+
+export type AppRouter = AppTrpcRouter['appRouter'];

@@ -1,4 +1,4 @@
-import type { AppRouter } from '@hometheca/server/dist';
+import type { AppRouter } from '@hometheca/server';
 
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 

@@ -1,9 +1,11 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "declaration": true,
         "removeComments": true,
+        "esModuleInterop": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
@@ -26,5 +28,6 @@
             "@t": ["./src/trpc"],
             "@user": ["./src/user"]
         }
-    }
+    },
+    "exclude": ["node_modules", "dist", "../client"]
 }

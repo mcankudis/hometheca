@@ -12,7 +12,7 @@ export default defineConfig({
         port: 3001
     },
     build: {
-        target: 'esnext'
+        target: 'es2022'
     },
     resolve: {
         alias: {

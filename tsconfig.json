@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "CommonJS",
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "moduleResolution": "Node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "sourceMap": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "outDir": "./dist"
+    },
+    "include": ["shared", "server", "client"]
+}
