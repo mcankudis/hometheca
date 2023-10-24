@@ -1,5 +1,13 @@
 
 
+## [0.7.0](https://github.com/mcankudis/hometheca/compare/0.6.0...0.7.0) (2023-10-24)
+
+
+### Features
+
+* add local nginx config ([9ece30c](https://github.com/mcankudis/hometheca/commit/9ece30cba8a37305c1af7a9b01268295e2f4ee73))
+* load user data on page load ([66dbee2](https://github.com/mcankudis/hometheca/commit/66dbee2dc56eff4cbbb978128096c29c0b646537))
+
 ## [0.6.0](https://github.com/mcankudis/hometheca/compare/0.5.0...0.6.0) (2023-10-03)
 
 
