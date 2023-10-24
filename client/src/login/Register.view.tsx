@@ -2,7 +2,7 @@ import { A } from '@solidjs/router';
 import { Box, Button, Container, TextField, Typography } from '@suid/material';
 
 import { logo } from '@assets';
-import { Locale } from '@hometheca/shared';
+import { Locale } from '@hometheca/shared/index';
 import { createSignal } from 'solid-js';
 import { api } from '../api';
 import { Paths } from '../paths';

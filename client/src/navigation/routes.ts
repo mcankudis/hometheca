@@ -1,6 +1,7 @@
 import { Component } from 'solid-js';
 
 import { LoginView, RegisterView } from '@login';
+import { HomeView } from '../home/Home.view';
 import { Paths } from '../paths';
 
 interface Route {
@@ -12,6 +13,12 @@ interface Route {
 
 // todo translate names
 export const routes: Route[] = [
+    {
+        name: 'Home',
+        path: Paths.HOME,
+        component: HomeView,
+        type: 'private'
+    },
     {
         name: 'Login',
         path: Paths.LOGIN,

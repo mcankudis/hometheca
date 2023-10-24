@@ -6,10 +6,10 @@ import { randomUUID } from 'crypto';
 import { Model } from 'mongoose';
 
 import { EnvVars } from '@config';
+import { CreateUserDTO } from '@hometheca/shared';
 import { DatadogLogger } from '@logging';
 import { MailService } from '@mail';
 import { User } from './User';
-import { CreateUserDTO } from './User.dto';
 import { UserDAO } from './User.schema';
 import { UserMailUtils } from './UserMail.utils';
 
@@ -23,6 +23,22 @@ export class UserService {
         private readonly configService: ConfigService<EnvVars>,
         private readonly mailService: MailService
     ) {}
+
+    public async getUserData(id: string) {
+        this.Logger.log(`Getting user ${id}`);
+
+        const user = await this.userDAO.findById(id);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        return {
+            id: user._id.toString(),
+            username: user.username,
+            locale: user.locale
+        };
+    }
 
     public async createUser(createUserDto: CreateUserDTO) {
         this.Logger.log(`Creating user ${createUserDto.username}`);
@@ -99,6 +115,10 @@ export class UserService {
         if (!user) {
             // todo sleep for a bit to prevent timing attacks
             throw new Error('Username or password incorrect');
+        }
+
+        if (!user.account.emailVerifiedAt) {
+            throw new Error('Email not verified');
         }
 
         const isPasswordCorrect = await compare(

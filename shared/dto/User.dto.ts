@@ -1,5 +1,6 @@
-import { Locale } from '@hometheca/shared';
 import { z } from 'zod';
+
+import { Locale } from '../types';
 
 // todo translated error messages
 
@@ -26,3 +27,9 @@ export const LoginUserDTO = z.object({
 });
 
 export type LoginUserDTO = z.infer<typeof LoginUserDTO>;
+
+export interface UserData {
+    id: string;
+    username: string;
+    locale: Locale;
+}

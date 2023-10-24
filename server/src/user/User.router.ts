@@ -3,9 +3,9 @@ import { serialize } from 'cookie';
 import { Response } from 'express';
 
 import { AuthService } from '@auth';
+import { CreateUserDTO, LoginUserDTO, verifyEmailDTO } from '@hometheca/shared';
 import { DatadogLogger } from '@logging';
 import { TrpcService } from '@t';
-import { CreateUserDTO, LoginUserDTO, verifyEmailDTO } from './User.dto';
 import { UserService } from './User.service';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class UserRouter {
             }),
         login: this.trpc.procedure
             .input(LoginUserDTO)
-            .mutation(async ({ input, ctx }) => {
+            .mutation(async ({ input, ctx }): Promise<{ id: string }> => {
                 this.Logger.log(`User login: ${input.username}`);
 
                 const user = await this.userService.authenticateUser(
@@ -52,10 +52,10 @@ export class UserRouter {
 
                 this.Logger.log(`User ${user.id} logged in, session created`);
 
-                return { success: true };
+                return user;
             }),
-        protectedTest: this.trpc.protectedProcedure.query(({ ctx }) => {
-            return { test: ctx.session };
+        getUserData: this.trpc.protectedProcedure.query(({ ctx }) => {
+            return this.userService.getUserData(ctx.session.userId);
         })
     });
 
